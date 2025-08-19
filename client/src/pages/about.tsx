@@ -2,6 +2,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Award, Clock, Leaf, Handshake, Phone, Mail, MapPin, CheckCircle, Star, Users, Target } from "lucide-react";
 import { useLocation } from "wouter";
+import profileImage from "../assets/images/profil.png";
 
 export default function About() {
   const [, setLocation] = useLocation();
@@ -101,7 +102,7 @@ export default function About() {
             
             <div className="order-1 lg:order-2">
               <img 
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=800"
+                src={profileImage}
                 alt="Mbe nde Augustin - Fondateur AB-Peinture Pro"
                 className="rounded-xl shadow-lg w-full max-w-md mx-auto"
               />
