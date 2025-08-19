@@ -24,12 +24,13 @@ export class EmailService {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          subject: `Nouvelle demande de devis - ${contact.firstName} ${contact.lastName}`,
-          from: contact.email,
-          message: this.generateContactEmailText(contact),
-          html: this.generateContactEmailHTML(contact),
-        }),
+                            body: JSON.stringify({
+                      subject: `🎨 Nouvelle demande de devis - ${contact.firstName} ${contact.lastName}`,
+                      from: `A&B PEINTURE <${contact.email}>`,
+                      replyTo: contact.email,
+                      message: this.generateContactEmailText(contact),
+                      html: this.generateContactEmailHTML(contact),
+                    }),
       });
 
       if (response.ok) {
@@ -89,8 +90,14 @@ Contactez le client dans les 24h pour un devis personnalisé
       <body>
         <div class="container">
           <div class="header">
+            <div style="margin-bottom: 15px;">
+              <div style="display: inline-block; background: white; border-radius: 50%; padding: 10px; margin-bottom: 10px;">
+                <div style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(45deg, #10b981, #1e3a8a); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 16px;">A&B</div>
+              </div>
+            </div>
             <h1>🎨 Nouvelle Demande de Devis</h1>
-            <p>A&B PEINTURE - Les Murs de Augustin</p>
+            <p style="margin: 0; font-size: 18px; font-weight: bold;">A&B PEINTURE</p>
+            <p style="margin: 5px 0 0 0; font-size: 14px; opacity: 0.9;">Les Murs de Augustin</p>
           </div>
           
           <div class="content">
