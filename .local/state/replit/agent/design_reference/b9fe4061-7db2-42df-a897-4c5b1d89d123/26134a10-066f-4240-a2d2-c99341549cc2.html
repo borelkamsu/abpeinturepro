@@ -1,0 +1,841 @@
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AB-Peinture Pro - Les Murs de Augustin | Peinture Professionnelle à Québec</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3cb18a',
+                        secondary: '#142D46',
+                        dark: '#1b1f2a',
+                        neutral: '#6A6F7A',
+                        light: '#FDFEFE',
+                        accent: '#F39C12',
+                        success: '#27AE60'
+                    },
+                    fontFamily: {
+                        'poppins': ['Poppins', 'sans-serif'],
+                        'inter': ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        };
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="font-inter bg-light text-neutral">
+    <!-- @COMPONENT: Header [navigation and logo] -->
+    <header class="bg-white shadow-lg fixed w-full top-0 z-50">
+        <nav class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
+                        <i class="fas fa-paint-brush text-white text-lg"></i>
+                    </div>
+                    <h1 class="text-2xl font-poppins font-bold text-secondary">AB-Peinture Pro</h1>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#accueil" class="text-neutral hover:text-primary transition-colors font-medium">Accueil</a>
+                    <a href="#services" class="text-neutral hover:text-primary transition-colors font-medium">Services</a>
+                    <a href="#apropos" class="text-neutral hover:text-primary transition-colors font-medium">À Propos</a>
+                    <a href="#galerie" class="text-neutral hover:text-primary transition-colors font-medium">Galerie</a>
+                    <a href="#contact" class="text-neutral hover:text-primary transition-colors font-medium">Contact</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden" data-event="click:toggleMobileMenu">
+                    <i class="fas fa-bars text-2xl text-secondary"></i>
+                </button>
+            </div>
+
+            <!-- Mobile Navigation -->
+            <div class="md:hidden mt-4 pb-4 border-t border-gray-200 hidden" id="mobile-menu">
+                <div class="flex flex-col space-y-4 mt-4">
+                    <a href="#accueil" class="text-neutral hover:text-primary transition-colors font-medium">Accueil</a>
+                    <a href="#services" class="text-neutral hover:text-primary transition-colors font-medium">Services</a>
+                    <a href="#apropos" class="text-neutral hover:text-primary transition-colors font-medium">À Propos</a>
+                    <a href="#galerie" class="text-neutral hover:text-primary transition-colors font-medium">Galerie</a>
+                    <a href="#contact" class="text-neutral hover:text-primary transition-colors font-medium">Contact</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- @END_COMPONENT: Header -->
+
+    <!-- @COMPONENT: Hero [main banner with slogan] -->
+    <section id="accueil" class="pt-20">
+        <!-- Hero with background image -->
+        <div class="relative min-h-screen flex items-center">
+            <!-- Professional painter working on interior wall with modern equipment -->
+            <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" 
+                 style="background-image: linear-gradient(rgba(20, 45, 70, 0.7), rgba(27, 31, 42, 0.8)), url('https://images.unsplash.com/photo-1562259949-e8e7689d7828?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80');">
+            </div>
+            
+            <div class="relative container mx-auto px-4 text-center text-white">
+                <h1 class="text-5xl md:text-7xl font-poppins font-bold mb-6">
+                    Les Murs de <span class="text-primary">Augustin</span>
+                </h1>
+                <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto leading-relaxed">
+                    Transformons vos espaces avec la passion et l'expertise d'AB-Peinture Pro. 
+                    Votre vision, notre savoir-faire.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button class="bg-primary hover:bg-opacity-90 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all transform hover:scale-105" 
+                            data-event="click:scrollToContact">
+                        Obtenir un Devis Gratuit
+                    </button>
+                    <button class="border-2 border-white text-white hover:bg-white hover:text-secondary px-8 py-4 rounded-lg font-semibold text-lg transition-all"
+                            data-event="click:scrollToServices">
+                        Découvrir nos Services
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: Hero -->
+
+    <!-- @COMPONENT: MainServices [primary services showcase] -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-poppins font-bold text-secondary mb-4">
+                    Nos Services Principaux
+                </h2>
+                <p class="text-xl text-neutral max-w-2xl mx-auto">
+                    Découvrez notre gamme complète de services de peinture et de rénovation pour tous vos projets
+                </p>
+            </div>
+
+            <!-- @MAP: mainServices.map(service => ( -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1: Peinture résidentielle intérieure -->
+                <div class="bg-light rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow group">
+                    <!-- Modern interior room with freshly painted walls in neutral tones -->
+                    <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=300" 
+                         alt="Peinture résidentielle intérieure" 
+                         class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
+                    <div class="p-6">
+                        <div class="flex items-center mb-3">
+                            <i class="fas fa-home text-primary text-2xl mr-3"></i>
+                            <h3 class="text-xl font-poppins font-semibold text-secondary">Peinture Résidentielle Intérieure</h3>
+                        </div>
+                        <p class="text-neutral mb-4">
+                            Transformez vos espaces de vie avec notre expertise en peinture intérieure. 
+                            Finitions impeccables garanties.
+                        </p>
+                        <button class="text-primary font-semibold hover:text-secondary transition-colors" 
+                                data-event="click:openServiceDetails">
+                            En savoir plus <i class="fas fa-arrow-right ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Service 2: Nettoyage et pose de revêtement muraux -->
+                <div class="bg-light rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow group">
+                    <!-- Professional installing decorative wall covering in modern room -->
+                    <img src="https://images.unsplash.com/photo-1581858726788-75bc0f6a952d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=300" 
+                         alt="Pose de revêtement muraux" 
+                         class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
+                    <div class="p-6">
+                        <div class="flex items-center mb-3">
+                            <i class="fas fa-layer-group text-primary text-2xl mr-3"></i>
+                            <h3 class="text-xl font-poppins font-semibold text-secondary">Revêtements Muraux</h3>
+                        </div>
+                        <p class="text-neutral mb-4">
+                            Nettoyage professionnel et pose experte de tous types de revêtements muraux 
+                            pour un rendu exceptionnel.
+                        </p>
+                        <button class="text-primary font-semibold hover:text-secondary transition-colors" 
+                                data-event="click:openServiceDetails">
+                            En savoir plus <i class="fas fa-arrow-right ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Service 3: Estimation -->
+                <div class="bg-light rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow group">
+                    <!-- Professional contractor with tablet calculating estimates in modern home -->
+                    <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=300" 
+                         alt="Service d'estimation" 
+                         class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
+                    <div class="p-6">
+                        <div class="flex items-center mb-3">
+                            <i class="fas fa-calculator text-primary text-2xl mr-3"></i>
+                            <h3 class="text-xl font-poppins font-semibold text-secondary">Estimation Gratuite</h3>
+                        </div>
+                        <p class="text-neutral mb-4">
+                            Évaluation précise et transparente de vos projets. 
+                            Devis détaillé gratuit sous 24h.
+                        </p>
+                        <button class="text-primary font-semibold hover:text-secondary transition-colors" 
+                                data-event="click:openServiceDetails">
+                            En savoir plus <i class="fas fa-arrow-right ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Service 4: Conseil -->
+                <div class="bg-light rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow group">
+                    <!-- Color consultation with paint samples and design materials -->
+                    <img src="https://images.unsplash.com/photo-1541123603104-512919d6a96c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=300" 
+                         alt="Service de conseil en couleurs" 
+                         class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
+                    <div class="p-6">
+                        <div class="flex items-center mb-3">
+                            <i class="fas fa-lightbulb text-primary text-2xl mr-3"></i>
+                            <h3 class="text-xl font-poppins font-semibold text-secondary">Conseil Expert</h3>
+                        </div>
+                        <p class="text-neutral mb-4">
+                            Accompagnement personnalisé dans le choix des couleurs, 
+                            finitions et techniques adaptées à vos besoins.
+                        </p>
+                        <button class="text-primary font-semibold hover:text-secondary transition-colors" 
+                                data-event="click:openServiceDetails">
+                            En savoir plus <i class="fas fa-arrow-right ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Service 5: Tirage des joints -->
+                <div class="bg-light rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow group">
+                    <!-- Professional finishing drywall joints with precision tools -->
+                    <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=300" 
+                         alt="Tirage de joints professionnel" 
+                         class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
+                    <div class="p-6">
+                        <div class="flex items-center mb-3">
+                            <i class="fas fa-tools text-primary text-2xl mr-3"></i>
+                            <h3 class="text-xl font-poppins font-semibold text-secondary">Tirage des Joints</h3>
+                        </div>
+                        <p class="text-neutral mb-4">
+                            Finition parfaite des joints de gypse pour des surfaces 
+                            lisses et prêtes à recevoir la peinture.
+                        </p>
+                        <button class="text-primary font-semibold hover:text-secondary transition-colors" 
+                                data-event="click:openServiceDetails">
+                            En savoir plus <i class="fas fa-arrow-right ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Additional Service Highlight -->
+                <div class="bg-gradient-to-br from-primary to-secondary rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow group text-white">
+                    <div class="p-8 text-center">
+                        <i class="fas fa-star text-4xl mb-4 text-accent"></i>
+                        <h3 class="text-xl font-poppins font-semibold mb-4">Service Premium</h3>
+                        <p class="mb-6">
+                            Découvrez notre gamme complète de services de rénovation et de finition
+                        </p>
+                        <button class="bg-white text-secondary px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
+                                data-event="click:viewAllServices">
+                            Voir Tous nos Services
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- @END_MAP )) -->
+        </div>
+    </section>
+    <!-- @END_COMPONENT: MainServices -->
+
+    <!-- @COMPONENT: AboutSection [company information] -->
+    <section id="apropos" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-4xl md:text-5xl font-poppins font-bold text-secondary mb-6">
+                        À Propos d'AB-Peinture Pro
+                    </h2>
+                    <p class="text-lg text-neutral mb-6 leading-relaxed">
+                        Dirigée par <strong class="text-secondary">Mbe nde Augustin</strong>, AB-Peinture Pro est votre partenaire de confiance 
+                        pour tous vos projets de peinture et de rénovation à Québec. Avec des années d'expérience 
+                        et un engagement envers l'excellence, nous transformons vos espaces avec passion et professionnalisme.
+                    </p>
+                    <p class="text-lg text-neutral mb-8 leading-relaxed">
+                        Notre devise "Les Murs de Augustin" reflète notre approche personnalisée et notre attention 
+                        aux détails. Chaque projet est unique et mérite une solution sur mesure.
+                    </p>
+                    
+                    <div class="grid sm:grid-cols-2 gap-6 mb-8">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center">
+                                <i class="fas fa-award text-white text-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-secondary">Qualité Garantie</h4>
+                                <p class="text-neutral text-sm">Finitions impeccables</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center space-x-3">
+                            <div class="w-12 h-12 bg-accent rounded-full flex items-center justify-center">
+                                <i class="fas fa-clock text-white text-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-secondary">Respect des Délais</h4>
+                                <p class="text-neutral text-sm">Projets livrés à temps</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center space-x-3">
+                            <div class="w-12 h-12 bg-success rounded-full flex items-center justify-center">
+                                <i class="fas fa-leaf text-white text-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-secondary">Éco-responsable</h4>
+                                <p class="text-neutral text-sm">Peintures écologiques</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center space-x-3">
+                            <div class="w-12 h-12 bg-secondary rounded-full flex items-center justify-center">
+                                <i class="fas fa-handshake text-white text-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-secondary">Service Client</h4>
+                                <p class="text-neutral text-sm">Satisfaction garantie</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="space-y-6">
+                    <!-- Professional painter portrait in work environment -->
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600" 
+                         alt="Mbe nde Augustin - Propriétaire AB-Peinture Pro" 
+                         class="rounded-xl shadow-lg w-full">
+                    
+                    <div class="bg-white p-6 rounded-xl shadow-lg">
+                        <h3 class="text-xl font-poppins font-semibold text-secondary mb-4">Nos Coordonnées</h3>
+                        <div class="space-y-3">
+                            <div class="flex items-center space-x-3">
+                                <i class="fas fa-map-marker-alt text-primary"></i>
+                                <span class="text-neutral">3637 rue des sureaux, Charlesbourg, Québec G1G1Z7</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <i class="fas fa-phone text-primary"></i>
+                                <span class="text-neutral">(418) 473-6433</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <i class="fas fa-envelope text-primary"></i>
+                                <span class="text-neutral">augustinmbende82@yahoo.com</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: AboutSection -->
+
+    <!-- @COMPONENT: Gallery [portfolio showcase] -->
+    <section id="galerie" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-poppins font-bold text-secondary mb-4">
+                    Galerie de nos Réalisations
+                </h2>
+                <p class="text-xl text-neutral max-w-2xl mx-auto">
+                    Découvrez quelques-uns de nos projets récents et laissez-vous inspirer par notre savoir-faire
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- @MAP: portfolioImages.map(image => ( -->
+                
+                <!-- Modern living room with professional paint job -->
+                <div class="group cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400" 
+                         alt="Salon moderne avec peinture professionnelle" 
+                         class="w-full h-64 object-cover rounded-xl shadow-lg group-hover:shadow-xl transition-all group-hover:scale-105">
+                </div>
+                
+                <!-- Beautifully painted kitchen interior -->
+                <div class="group cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400" 
+                         alt="Cuisine moderne avec finition peinture parfaite" 
+                         class="w-full h-64 object-cover rounded-xl shadow-lg group-hover:shadow-xl transition-all group-hover:scale-105">
+                </div>
+                
+                <!-- Elegant bedroom with perfect wall finish -->
+                <div class="group cursor-pointer">
+                    <img src="https://pixabay.com/get/gb6eee5d42433dde9b50d15d26e22ef3c9da783b420650e3c1837ba1e8eb87ed0ac75abe2bfb066407d4696a48f957483c689fd5f72eb68baf821e2404512f7cd_1280.jpg" 
+                         alt="Chambre élégante avec peinture murale parfaite" 
+                         class="w-full h-64 object-cover rounded-xl shadow-lg group-hover:shadow-xl transition-all group-hover:scale-105">
+                </div>
+                
+                <!-- Professional exterior house painting -->
+                <div class="group cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400" 
+                         alt="Maison extérieure avec peinture professionnelle" 
+                         class="w-full h-64 object-cover rounded-xl shadow-lg group-hover:shadow-xl transition-all group-hover:scale-105">
+                </div>
+                
+                <!-- Modern bathroom with perfect finishes -->
+                <div class="group cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1620626011761-996317b8d101?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400" 
+                         alt="Salle de bain moderne avec finition parfaite" 
+                         class="w-full h-64 object-cover rounded-xl shadow-lg group-hover:shadow-xl transition-all group-hover:scale-105">
+                </div>
+                
+                <!-- Commercial space painting project -->
+                <div class="group cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400" 
+                         alt="Espace commercial avec peinture professionnelle" 
+                         class="w-full h-64 object-cover rounded-xl shadow-lg group-hover:shadow-xl transition-all group-hover:scale-105">
+                </div>
+                
+                <!-- @END_MAP )) -->
+            </div>
+            
+            <div class="text-center mt-12">
+                <button class="bg-primary hover:bg-opacity-90 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all"
+                        data-event="click:viewFullGallery">
+                    Voir Plus de Réalisations
+                </button>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: Gallery -->
+
+    <!-- @COMPONENT: AllServices [complete services page] -->
+    <section id="services" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-poppins font-bold text-secondary mb-4">
+                    Tous nos Services
+                </h2>
+                <p class="text-xl text-neutral max-w-2xl mx-auto">
+                    Une gamme complète de services pour tous vos besoins en rénovation et finition
+                </p>
+            </div>
+
+            <!-- Additional Services Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Rénovation intérieure -->
+                <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-hammer text-primary text-2xl mr-3"></i>
+                        <h3 class="text-xl font-poppins font-semibold text-secondary">Rénovation Intérieure</h3>
+                    </div>
+                    <p class="text-neutral mb-4">Salon, cuisine, sous-sol - transformation complète de vos espaces de vie</p>
+                    <ul class="text-sm text-neutral space-y-1">
+                        <li>• Rénovation de salon</li>
+                        <li>• Rénovation de cuisine</li>
+                        <li>• Aménagement de sous-sol</li>
+                    </ul>
+                </div>
+
+                <!-- Sablage et vernissage -->
+                <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-layer-group text-primary text-2xl mr-3"></i>
+                        <h3 class="text-xl font-poppins font-semibold text-secondary">Sablage et Vernissage</h3>
+                    </div>
+                    <p class="text-neutral mb-4">Restauration et protection de vos planchers de bois</p>
+                    <ul class="text-sm text-neutral space-y-1">
+                        <li>• Sablage professionnel</li>
+                        <li>• Vernissage de qualité</li>
+                        <li>• Restauration complète</li>
+                    </ul>
+                </div>
+
+                <!-- Crépy acrylique -->
+                <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-palette text-primary text-2xl mr-3"></i>
+                        <h3 class="text-xl font-poppins font-semibold text-secondary">Crépy Acrylique</h3>
+                    </div>
+                    <p class="text-neutral mb-4">Finition texturée moderne pour vos murs intérieurs et extérieurs</p>
+                    <ul class="text-sm text-neutral space-y-1">
+                        <li>• Application professionnelle</li>
+                        <li>• Différentes textures</li>
+                        <li>• Durabilité garantie</li>
+                    </ul>
+                </div>
+
+                <!-- Revêtement d'époxy -->
+                <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-road text-primary text-2xl mr-3"></i>
+                        <h3 class="text-xl font-poppins font-semibold text-secondary">Revêtement d'Époxy</h3>
+                    </div>
+                    <p class="text-neutral mb-4">Protection durable pour terrasses en béton et escaliers</p>
+                    <ul class="text-sm text-neutral space-y-1">
+                        <li>• Terrasses en béton</li>
+                        <li>• Escaliers extérieurs</li>
+                        <li>• Résistance aux intempéries</li>
+                    </ul>
+                </div>
+
+                <!-- Fabrication de patio -->
+                <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-cube text-primary text-2xl mr-3"></i>
+                        <h3 class="text-xl font-poppins font-semibold text-secondary">Fabrication de Patio</h3>
+                    </div>
+                    <p class="text-neutral mb-4">Conception et construction de patios sur mesure</p>
+                    <ul class="text-sm text-neutral space-y-1">
+                        <li>• Design personnalisé</li>
+                        <li>• Construction complète</li>
+                        <li>• Matériaux de qualité</li>
+                    </ul>
+                </div>
+
+                <!-- Plomberie -->
+                <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-wrench text-primary text-2xl mr-3"></i>
+                        <h3 class="text-xl font-poppins font-semibold text-secondary">Travaux de Plomberie</h3>
+                    </div>
+                    <p class="text-neutral mb-4">Services de plomberie générale et débouchage</p>
+                    <ul class="text-sm text-neutral space-y-1">
+                        <li>• Réparations diverses</li>
+                        <li>• Débouchage des drains</li>
+                        <li>• Installation sanitaire</li>
+                    </ul>
+                </div>
+
+                <!-- Menuiserie -->
+                <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-cut text-primary text-2xl mr-3"></i>
+                        <h3 class="text-xl font-poppins font-semibold text-secondary">Menuiserie et Charpenterie</h3>
+                    </div>
+                    <p class="text-neutral mb-4">Travaux de bois sur mesure et charpenterie</p>
+                    <ul class="text-sm text-neutral space-y-1">
+                        <li>• Menuiserie fine</li>
+                        <li>• Charpenterie générale</li>
+                        <li>• Réparations structurelles</li>
+                    </ul>
+                </div>
+
+                <!-- Électricité -->
+                <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-bolt text-primary text-2xl mr-3"></i>
+                        <h3 class="text-xl font-poppins font-semibold text-secondary">Travaux d'Électricité</h3>
+                    </div>
+                    <p class="text-neutral mb-4">Installation et réparation électrique professionnelle</p>
+                    <ul class="text-sm text-neutral space-y-1">
+                        <li>• Installation de prises</li>
+                        <li>• Éclairage moderne</li>
+                        <li>• Mise aux normes</li>
+                    </ul>
+                </div>
+
+                <!-- Service Premium -->
+                <div class="bg-gradient-to-br from-primary to-secondary rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow text-white">
+                    <div class="text-center">
+                        <i class="fas fa-crown text-4xl mb-4 text-accent"></i>
+                        <h3 class="text-xl font-poppins font-semibold mb-4">Service Complet</h3>
+                        <p class="mb-6">Projet complexe? Nous gérons tout de A à Z</p>
+                        <button class="bg-white text-secondary px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
+                                data-event="click:contactForComplexProject">
+                            Discuter de votre Projet
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: AllServices -->
+
+    <!-- @COMPONENT: ContactSection [contact form and information] -->
+    <section id="contact" class="py-20 bg-secondary text-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-poppins font-bold mb-4">
+                    Contactez-nous
+                </h2>
+                <p class="text-xl max-w-2xl mx-auto">
+                    Prêt à transformer vos espaces? Obtenez votre devis gratuit dès aujourd'hui
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12">
+                <!-- Contact Form -->
+                <div class="bg-white rounded-xl p-8 shadow-xl">
+                    <h3 class="text-2xl font-poppins font-semibold text-secondary mb-6">Demande de Devis</h3>
+                    
+                    <form class="space-y-6" data-implementation="Contact form with validation">
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-neutral font-medium mb-2">Prénom *</label>
+                                <input type="text" 
+                                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" 
+                                       data-bind="form.firstName"
+                                       placeholder="Votre prénom">
+                            </div>
+                            <div>
+                                <label class="block text-neutral font-medium mb-2">Nom *</label>
+                                <input type="text" 
+                                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" 
+                                       data-bind="form.lastName"
+                                       placeholder="Votre nom">
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-neutral font-medium mb-2">Email *</label>
+                            <input type="email" 
+                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" 
+                                   data-bind="form.email"
+                                   placeholder="votre@email.com">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-neutral font-medium mb-2">Téléphone</label>
+                            <input type="tel" 
+                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" 
+                                   data-bind="form.phone"
+                                   placeholder="(418) 000-0000">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-neutral font-medium mb-2">Type de Service *</label>
+                            <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                                    data-bind="form.serviceType">
+                                <option>Sélectionnez un service</option>
+                                <option>Peinture résidentielle intérieure</option>
+                                <option>Peinture extérieure</option>
+                                <option>Rénovation complète</option>
+                                <option>Revêtement muraux</option>
+                                <option>Sablage et vernissage</option>
+                                <option>Autre (préciser dans le message)</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-neutral font-medium mb-2">Description du Projet *</label>
+                            <textarea rows="4" 
+                                      class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" 
+                                      data-bind="form.message"
+                                      placeholder="Décrivez votre projet en détail..."></textarea>
+                        </div>
+                        
+                        <button type="submit" 
+                                class="w-full bg-primary hover:bg-opacity-90 text-white py-4 rounded-lg font-semibold text-lg transition-all transform hover:scale-105"
+                                data-event="click:submitContactForm">
+                            Envoyer ma Demande
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Contact Information -->
+                <div class="space-y-8">
+                    <div>
+                        <h3 class="text-2xl font-poppins font-semibold mb-6">Informations de Contact</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-map-marker-alt text-white text-lg"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-lg mb-2">Adresse</h4>
+                                    <p class="text-gray-300">
+                                        3637 rue des sureaux<br>
+                                        Charlesbourg, Québec<br>
+                                        G1G1Z7
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 bg-accent rounded-full flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-phone text-white text-lg"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-lg mb-2">Téléphone</h4>
+                                    <p class="text-gray-300">(418) 473-6433</p>
+                                    <p class="text-sm text-gray-400">Lun-Ven: 8h00-18h00</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 bg-success rounded-full flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-envelope text-white text-lg"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-lg mb-2">Email</h4>
+                                    <p class="text-gray-300">augustinmbende82@yahoo.com</p>
+                                    <p class="text-sm text-gray-400">Réponse sous 24h</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white bg-opacity-10 rounded-xl p-6">
+                        <h4 class="font-poppins font-semibold text-lg mb-4">Pourquoi Choisir AB-Peinture Pro?</h4>
+                        <ul class="space-y-3 text-gray-300">
+                            <li class="flex items-center space-x-3">
+                                <i class="fas fa-check-circle text-primary"></i>
+                                <span>Devis gratuit et détaillé</span>
+                            </li>
+                            <li class="flex items-center space-x-3">
+                                <i class="fas fa-check-circle text-primary"></i>
+                                <span>Matériaux de qualité supérieure</span>
+                            </li>
+                            <li class="flex items-center space-x-3">
+                                <i class="fas fa-check-circle text-primary"></i>
+                                <span>Équipe expérimentée et assurée</span>
+                            </li>
+                            <li class="flex items-center space-x-3">
+                                <i class="fas fa-check-circle text-primary"></i>
+                                <span>Satisfaction client garantie</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="text-center">
+                        <p class="text-xl font-poppins font-semibold text-primary mb-2">
+                            Urgence 24/7
+                        </p>
+                        <p class="text-gray-300">
+                            Pour les projets urgents, n'hésitez pas à nous appeler
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: ContactSection -->
+
+    <!-- @COMPONENT: Footer [site footer] -->
+    <footer class="bg-dark text-gray-300 py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
+                            <i class="fas fa-paint-brush text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-poppins font-bold text-white">AB-Peinture Pro</h3>
+                    </div>
+                    <p class="mb-4 text-gray-400">
+                        "Les Murs de Augustin" - Votre expert en peinture et rénovation à Québec. 
+                        Qualité, professionnalisme et satisfaction garantie.
+                    </p>
+                    <p class="text-sm text-gray-500">
+                        © 2024 AB-Peinture Pro. Tous droits réservés.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-4">Services Rapides</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-primary transition-colors">Peinture Intérieure</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">Peinture Extérieure</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">Rénovation</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">Estimation Gratuite</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">Conseil Expert</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-4">Contact Rapide</h4>
+                    <div class="space-y-3 text-sm">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-phone text-primary"></i>
+                            <span>(418) 473-6433</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-envelope text-primary"></i>
+                            <span>augustinmbende82@yahoo.com</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-map-marker-alt text-primary"></i>
+                            <span>Charlesbourg, Québec</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6">
+                        <p class="text-white font-semibold mb-2">Suivez-nous</p>
+                        <div class="flex space-x-4">
+                            <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                                <i class="fab fa-facebook-f text-lg"></i>
+                            </a>
+                            <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                                <i class="fab fa-instagram text-lg"></i>
+                            </a>
+                            <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                                <i class="fab fa-linkedin-in text-lg"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-sm text-gray-500">
+                <p>Conçu avec passion pour AB-Peinture Pro - "Les Murs de Augustin"</p>
+            </div>
+        </div>
+    </footer>
+    <!-- @END_COMPONENT: Footer -->
+
+    <script>
+        (function() {
+            // TODO: Implement business logic, API calls, or state management
+            
+            // Mobile menu toggle
+            const mobileMenuButton = document.querySelector('[data-event="click:toggleMobileMenu"]');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+            
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+            
+            // Contact form handling
+            const contactForm = document.querySelector('form[data-implementation*="Contact form"]');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    // TODO: Implement form validation and submission
+                    alert('Merci pour votre demande! Nous vous contacterons sous 24h.');
+                });
+            }
+            
+            // CTA button handlers
+            document.querySelectorAll('[data-event*="click:"]').forEach(button => {
+                button.addEventListener('click', function() {
+                    const action = this.getAttribute('data-event').split(':')[1];
+                    switch(action) {
+                        case 'scrollToContact':
+                            document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                            break;
+                        case 'scrollToServices':
+                            document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' });
+                            break;
+                        // TODO: Add more action handlers as needed
+                    }
+                });
+            });
+        })();
+    </script>
+</body>
+</html>
