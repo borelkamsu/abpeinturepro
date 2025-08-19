@@ -1,72 +1,71 @@
 import { type Contact } from '@shared/schema';
 
 export class EmailService {
-  private transporter: any;
+  private webhookUrl: string | null = null;
 
   constructor() {
-    // Vérifier si les variables d'environnement sont configurées
-    if (!process.env.GMAIL_USER || !process.env.GMAIL_APP_PASSWORD) {
-      console.warn('Configuration Gmail manquante. Les emails ne seront pas envoyés.');
-      return;
-    }
-
-    // Import dynamique de nodemailer pour éviter les problèmes de build
-    try {
-      const nodemailer = require('nodemailer');
-      this.transporter = nodemailer.createTransporter({
-        service: 'gmail',
-        auth: {
-          user: process.env.GMAIL_USER,
-          pass: process.env.GMAIL_APP_PASSWORD,
-        },
-      });
-    } catch (error) {
-      console.error('Erreur lors de la création du transporteur email:', error);
+    // Utiliser un webhook simple (vous pouvez configurer un service comme Formspree, Netlify Forms, etc.)
+    this.webhookUrl = process.env.EMAIL_WEBHOOK_URL || null;
+    
+    if (!this.webhookUrl) {
+      console.warn('Aucun webhook email configuré. Les emails ne seront pas envoyés.');
     }
   }
 
   async sendContactNotification(contact: Contact): Promise<void> {
-    if (!this.transporter) {
-      console.warn('Transporteur email non configuré. Email de notification non envoyé.');
+    if (!this.webhookUrl) {
+      console.warn('Webhook email non configuré. Email de notification non envoyé.');
       return;
     }
 
-    const mailOptions = {
-      from: process.env.GMAIL_USER,
-      to: process.env.GMAIL_USER, // Envoi à vous-même pour notification
-      subject: `Nouvelle demande de devis - ${contact.firstName} ${contact.lastName}`,
-      html: this.generateContactEmailHTML(contact),
-    };
-
     try {
-      await this.transporter.sendMail(mailOptions);
-      console.log('Email de notification envoyé avec succès');
+      const response = await fetch(this.webhookUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          subject: `Nouvelle demande de devis - ${contact.firstName} ${contact.lastName}`,
+          from: contact.email,
+          message: this.generateContactEmailText(contact),
+          html: this.generateContactEmailHTML(contact),
+        }),
+      });
+
+      if (response.ok) {
+        console.log('Email de notification envoyé avec succès via webhook');
+      } else {
+        console.error('Erreur lors de l\'envoi de l\'email via webhook:', response.status);
+      }
     } catch (error) {
       console.error('Erreur lors de l\'envoi de l\'email:', error);
-      throw error;
     }
   }
 
   async sendConfirmationToClient(contact: Contact): Promise<void> {
-    if (!this.transporter) {
-      console.warn('Transporteur email non configuré. Email de confirmation non envoyé.');
-      return;
-    }
+    // Pour l'instant, on ne fait que logger la confirmation
+    // Vous pouvez configurer un webhook séparé pour les confirmations si nécessaire
+    console.log(`Confirmation de demande de devis pour ${contact.email} - Service: ${contact.serviceType}`);
+  }
 
-    const mailOptions = {
-      from: process.env.GMAIL_USER,
-      to: contact.email,
-      subject: 'Confirmation de votre demande de devis - A&B PEINTURE',
-      html: this.generateConfirmationEmailHTML(contact),
-    };
+  private generateContactEmailText(contact: Contact): string {
+    return `
+NOUVELLE DEMANDE DE DEVIS - A&B PEINTURE
 
-    try {
-      await this.transporter.sendMail(mailOptions);
-      console.log('Email de confirmation envoyé au client');
-    } catch (error) {
-      console.error('Erreur lors de l\'envoi de l\'email de confirmation:', error);
-      // Ne pas faire échouer le processus si l'email de confirmation échoue
-    }
+Nom complet: ${contact.firstName} ${contact.lastName}
+Email: ${contact.email}
+Téléphone: ${contact.phone || 'Non fourni'}
+Service demandé: ${contact.serviceType}
+
+Description du projet:
+${contact.message}
+
+Date de soumission: ${new Date(contact.createdAt).toLocaleString('fr-CA')}
+
+---
+Ce message a été envoyé automatiquement depuis le formulaire de contact d'A&B PEINTURE
+Contactez le client dans les 24h pour un devis personnalisé
+    `.trim();
   }
 
   private generateContactEmailHTML(contact: Contact): string {
