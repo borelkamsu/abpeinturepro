@@ -70,7 +70,14 @@ export default function Footer() {
             <div className="mt-6">
               <p className="text-white font-semibold mb-2">Suivez-nous</p>
               <div className="flex space-x-4">
-                <a href="#" className="text-gray-400 hover:text-primary-green transition-colors" data-testid="social-facebook">
+                <a 
+                  href="https://web.facebook.com/profile.php?id=61579253472270" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-primary-green transition-colors" 
+                  data-testid="social-facebook"
+                  title="Suivez A&B PEINTURE sur Facebook"
+                >
                   <Facebook size={20} />
                 </a>
                 <a href="#" className="text-gray-400 hover:text-primary-green transition-colors" data-testid="social-instagram">

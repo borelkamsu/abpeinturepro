@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Facebook } from "lucide-react";
 import Logo from "@/components/ui/logo";
 
 export default function Header() {
@@ -31,7 +31,7 @@ export default function Header() {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex space-x-8">
+          <div className="hidden md:flex items-center space-x-8">
             {navigation.map((item) => (
               <Link key={item.name} href={item.href}>
                 <a
@@ -46,6 +46,18 @@ export default function Header() {
                 </a>
               </Link>
             ))}
+            
+            {/* Facebook Icon */}
+            <a 
+              href="https://web.facebook.com/profile.php?id=61579253472270" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-neutral hover:text-primary-green transition-colors"
+              title="Suivez A&B PEINTURE sur Facebook"
+              data-testid="header-facebook"
+            >
+              <Facebook size={20} />
+            </a>
           </div>
 
           {/* Mobile Menu Button */}
