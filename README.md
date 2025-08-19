@@ -15,8 +15,8 @@ Ce projet est configuré pour être déployé sur [Render](https://render.com).
 ### Variables d'environnement
 
 Les variables d'environnement suivantes sont configurées automatiquement :
-- `NODE_ENV=production`
-- `PORT=8080`
+- `NODE_ENV=production` (défini dans render.yaml)
+- `PORT` (assigné automatiquement par Render)
 
 ## 🛠️ Développement local
 
@@ -112,7 +112,7 @@ Le projet utilise Drizzle ORM avec une base de données compatible PostgreSQL. P
 
 ```env
 NODE_ENV=production
-PORT=8080
+# PORT est assigné automatiquement par Render
 DATABASE_URL=postgresql://user:password@host:port/database
 ```
 
