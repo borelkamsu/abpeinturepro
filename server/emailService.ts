@@ -1,4 +1,3 @@
-import * as nodemailer from 'nodemailer';
 import { type Contact } from '@shared/schema';
 
 export class EmailService {
@@ -11,7 +10,9 @@ export class EmailService {
       return;
     }
 
+    // Import dynamique de nodemailer pour éviter les problèmes de build
     try {
+      const nodemailer = require('nodemailer');
       this.transporter = nodemailer.createTransporter({
         service: 'gmail',
         auth: {
