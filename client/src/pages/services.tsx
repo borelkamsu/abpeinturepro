@@ -108,6 +108,17 @@ export default function Services() {
     setLocation("/contact");
   };
 
+  const handleServiceDetails = (serviceName: string) => {
+    const serviceRoutes: { [key: string]: string } = {
+      "Peinture Résidentielle Intérieure": "/services/peinture-interieure",
+      "Nettoyage et Pose de Revêtement Muraux": "/services/revetements-muraux", 
+      "Estimation": "/services/estimation-gratuite",
+      "Conseil": "/services/conseil-expert",
+      "Tirage des Joints": "/services/tirage-joints"
+    };
+    setLocation(serviceRoutes[serviceName] || "/services");
+  };
+
   return (
     <div className="min-h-screen pt-20" data-testid="services-page">
       {/* Hero Section */}
@@ -145,11 +156,19 @@ export default function Services() {
                       <h3 className="text-xl font-poppins font-semibold text-secondary-blue">{service.title}</h3>
                     </div>
                     <p className="text-neutral mb-4">{service.description}</p>
-                    <ul className="text-sm text-neutral space-y-1">
+                    <ul className="text-sm text-neutral space-y-1 mb-4">
                       {service.features.map((feature, idx) => (
                         <li key={idx}>• {feature}</li>
                       ))}
                     </ul>
+                    <Button 
+                      variant="link" 
+                      className="text-primary-green font-semibold hover:text-secondary-blue p-0"
+                      onClick={() => handleServiceDetails(service.title)}
+                      data-testid={`button-service-details-${index}`}
+                    >
+                      En savoir plus →
+                    </Button>
                   </CardContent>
                 </Card>
               );

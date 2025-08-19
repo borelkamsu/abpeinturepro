@@ -39,8 +39,15 @@ const mainServices = [
 export default function ServicesShowcase() {
   const [, setLocation] = useLocation();
 
-  const handleServiceDetails = () => {
-    setLocation("/services");
+  const handleServiceDetails = (serviceName: string) => {
+    const serviceRoutes: { [key: string]: string } = {
+      "Peinture Résidentielle Intérieure": "/services/peinture-interieure",
+      "Revêtements Muraux": "/services/revetements-muraux",
+      "Estimation Gratuite": "/services/estimation-gratuite",
+      "Conseil Expert": "/services/conseil-expert",
+      "Tirage des Joints": "/services/tirage-joints"
+    };
+    setLocation(serviceRoutes[serviceName] || "/services");
   };
 
   const handleViewAllServices = () => {
@@ -80,7 +87,7 @@ export default function ServicesShowcase() {
                   <Button 
                     variant="link" 
                     className="text-primary-green font-semibold hover:text-secondary-blue p-0"
-                    onClick={handleServiceDetails}
+                    onClick={() => handleServiceDetails(service.title)}
                     data-testid={`button-service-details-${index}`}
                   >
                     En savoir plus →
