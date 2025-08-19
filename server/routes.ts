@@ -1,6 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
+import { emailService } from "./emailService";
 import { insertContactSchema } from "@shared/schema";
 import { z } from "zod";
 
@@ -10,6 +11,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const validatedData = insertContactSchema.parse(req.body);
       const contact = await storage.createContact(validatedData);
+      
+      // Envoyer les emails
+      try {
+        await emailService.sendContactNotification(contact);
+        await emailService.sendConfirmationToClient(contact);
+      } catch (emailError) {
+        console.error('Erreur lors de l\'envoi des emails:', emailError);
+        // Continuer même si l'email échoue
+      }
+      
       res.json({ success: true, contact });
     } catch (error) {
       if (error instanceof z.ZodError) {
