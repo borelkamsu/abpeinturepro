@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
-import { Menu, X, PaintbrushVertical } from "lucide-react";
+import { Menu, X } from "lucide-react";
+import Logo from "@/components/ui/logo";
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -25,13 +26,8 @@ export default function Header() {
     <header className="bg-white shadow-lg fixed w-full top-0 z-50" data-testid="header">
       <nav className="container mx-auto px-4 py-4">
         <div className="flex justify-between items-center">
-          <Link href="/" className="flex items-center space-x-2" data-testid="logo-link">
-            <div className="w-10 h-10 bg-primary-green rounded-full flex items-center justify-center">
-              <PaintbrushVertical className="text-white text-lg" />
-            </div>
-            <h1 className="text-2xl font-poppins font-bold text-secondary-blue">
-              AB-Peinture Pro
-            </h1>
+          <Link href="/" className="flex items-center" data-testid="logo-link">
+            <Logo size="md" />
           </Link>
 
           {/* Desktop Navigation */}

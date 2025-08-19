@@ -1,4 +1,5 @@
-import { PaintbrushVertical, Phone, Mail, MapPin, Facebook, Instagram, Linkedin } from "lucide-react";
+import { Phone, Mail, MapPin, Facebook, Instagram, Linkedin } from "lucide-react";
+import Logo from "@/components/ui/logo";
 
 export default function Footer() {
   return (
@@ -6,11 +7,8 @@ export default function Footer() {
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-3 gap-8">
           <div>
-            <div className="flex items-center space-x-2 mb-4">
-              <div className="w-8 h-8 bg-primary-green rounded-full flex items-center justify-center">
-                <PaintbrushVertical className="text-white" size={16} />
-              </div>
-              <h3 className="text-xl font-poppins font-bold text-white">AB-Peinture Pro</h3>
+            <div className="mb-4">
+              <Logo size="sm" variant="light" />
             </div>
             <p className="mb-4 text-gray-400">
               "Les Murs de Augustin" - Votre expert en peinture et rénovation à Québec. 
