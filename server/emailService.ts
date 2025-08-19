@@ -1,20 +1,35 @@
-import nodemailer from 'nodemailer';
+import * as nodemailer from 'nodemailer';
 import { type Contact } from '@shared/schema';
 
 export class EmailService {
-  private transporter: nodemailer.Transporter;
+  private transporter: any;
 
   constructor() {
-    this.transporter = nodemailer.createTransporter({
-      service: 'gmail',
-      auth: {
-        user: process.env.GMAIL_USER,
-        pass: process.env.GMAIL_APP_PASSWORD, // Mot de passe d'application Google
-      },
-    });
+    // Vérifier si les variables d'environnement sont configurées
+    if (!process.env.GMAIL_USER || !process.env.GMAIL_APP_PASSWORD) {
+      console.warn('Configuration Gmail manquante. Les emails ne seront pas envoyés.');
+      return;
+    }
+
+    try {
+      this.transporter = nodemailer.createTransporter({
+        service: 'gmail',
+        auth: {
+          user: process.env.GMAIL_USER,
+          pass: process.env.GMAIL_APP_PASSWORD,
+        },
+      });
+    } catch (error) {
+      console.error('Erreur lors de la création du transporteur email:', error);
+    }
   }
 
   async sendContactNotification(contact: Contact): Promise<void> {
+    if (!this.transporter) {
+      console.warn('Transporteur email non configuré. Email de notification non envoyé.');
+      return;
+    }
+
     const mailOptions = {
       from: process.env.GMAIL_USER,
       to: process.env.GMAIL_USER, // Envoi à vous-même pour notification
@@ -32,6 +47,11 @@ export class EmailService {
   }
 
   async sendConfirmationToClient(contact: Contact): Promise<void> {
+    if (!this.transporter) {
+      console.warn('Transporteur email non configuré. Email de confirmation non envoyé.');
+      return;
+    }
+
     const mailOptions = {
       from: process.env.GMAIL_USER,
       to: contact.email,
