@@ -17,78 +17,141 @@ import gallery15 from "../assets/gallery/pexels-photo-5799046.jpeg";
 import gallery16 from "../assets/gallery/pexels-photo-5481512.jpeg";
 
 const portfolioImages = [
-  {
-    src: gallery1,
-    alt: "Services de plâtrage et tirage de joints - A&B PEINTURE"
-  },
-  {
-    src: gallery2,
-    alt: "Pose de carrelage professionnel - A&B PEINTURE"
-  },
-  {
-    src: gallery3,
-    alt: "Étapes de tirage de joints - A&B PEINTURE"
-  },
-  {
-    src: gallery4,
-    alt: "Rénovation intérieure - A&B PEINTURE"
-  },
-  {
-    src: gallery5,
-    alt: "Pose de carrelage de salle de bains - A&B PEINTURE"
-  },
+  // Peinture Intérieure
   {
     src: gallery6,
-    alt: "Peinture intérieure professionnelle - A&B PEINTURE"
+    alt: "Peinture intérieure professionnelle - Salon moderne",
+    category: "interior"
   },
   {
     src: gallery7,
-    alt: "Travaux de peinture résidentielle - A&B PEINTURE"
+    alt: "Travaux de peinture résidentielle - Chambre élégante",
+    category: "interior"
   },
   {
     src: gallery8,
-    alt: "Finitions de peinture intérieure - A&B PEINTURE"
-  },
-  {
-    src: gallery9,
-    alt: "Projet de rénovation complet - A&B PEINTURE"
+    alt: "Finitions de peinture intérieure - Cuisine moderne",
+    category: "interior"
   },
   {
     src: gallery10,
-    alt: "Peinture commerciale - A&B PEINTURE"
-  },
-  {
-    src: gallery11,
-    alt: "Services de peinture extérieure - A&B PEINTURE"
-  },
-  {
-    src: gallery12,
-    alt: "Rénovation et peinture - A&B PEINTURE"
+    alt: "Peinture commerciale - Bureau professionnel",
+    category: "interior"
   },
   {
     src: gallery13,
-    alt: "Projet de peinture résidentielle - A&B PEINTURE"
+    alt: "Projet de peinture résidentielle - Salle à manger",
+    category: "interior"
   },
   {
     src: gallery14,
-    alt: "Finitions professionnelles - A&B PEINTURE"
+    alt: "Finitions professionnelles - Salon contemporain",
+    category: "interior"
   },
   {
     src: gallery15,
-    alt: "Travaux de peinture intérieure - A&B PEINTURE"
+    alt: "Travaux de peinture intérieure - Chambre d'enfant",
+    category: "interior"
   },
   {
     src: gallery16,
-    alt: "Projet de rénovation - A&B PEINTURE"
+    alt: "Projet de rénovation - Salle de bain moderne",
+    category: "interior"
+  },
+  // Images supplémentaires pour peinture intérieure
+  {
+    src: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+    alt: "Peinture intérieure - Salon élégant avec couleurs modernes",
+    category: "interior"
+  },
+  {
+    src: "https://images.unsplash.com/photo-1571508601891-ca5e7a713859?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+    alt: "Peinture intérieure - Chambre principale avec finition parfaite",
+    category: "interior"
+  },
+  {
+    src: "https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+    alt: "Peinture intérieure - Cuisine moderne avec peinture professionnelle",
+    category: "interior"
+  },
+  
+  // Peinture Extérieure
+  {
+    src: gallery11,
+    alt: "Services de peinture extérieure - Façade résidentielle",
+    category: "exterior"
+  },
+  {
+    src: gallery12,
+    alt: "Rénovation et peinture - Extérieur de maison",
+    category: "exterior"
+  },
+  // Images supplémentaires pour peinture extérieure
+  {
+    src: "https://images.unsplash.com/photo-1620626011761-996317b8d101?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+    alt: "Peinture extérieure - Façade de maison moderne",
+    category: "exterior"
+  },
+  {
+    src: "https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+    alt: "Peinture extérieure - Extérieur commercial professionnel",
+    category: "exterior"
+  },
+  {
+    src: "https://images.unsplash.com/photo-1562259949-e8e7689d7828?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+    alt: "Peinture extérieure - Maison résidentielle avec finition parfaite",
+    category: "exterior"
+  },
+  {
+    src: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+    alt: "Peinture extérieure - Façade rénovée avec couleurs modernes",
+    category: "exterior"
+  },
+  
+  // Rénovation (autres services)
+  {
+    src: gallery1,
+    alt: "Services de plâtrage et tirage de joints - A&B PEINTURE",
+    category: "renovation"
+  },
+  {
+    src: gallery2,
+    alt: "Pose de carrelage professionnel - A&B PEINTURE",
+    category: "renovation"
+  },
+  {
+    src: gallery3,
+    alt: "Étapes de tirage de joints - A&B PEINTURE",
+    category: "renovation"
+  },
+  {
+    src: gallery4,
+    alt: "Rénovation intérieure - A&B PEINTURE",
+    category: "renovation"
+  },
+  {
+    src: gallery5,
+    alt: "Pose de carrelage de salle de bains - A&B PEINTURE",
+    category: "renovation"
+  },
+  {
+    src: gallery9,
+    alt: "Projet de rénovation complet - A&B PEINTURE",
+    category: "renovation"
   }
 ];
 
 interface GalleryGridProps {
   showAll?: boolean;
+  category?: string;
 }
 
-export default function GalleryGrid({ showAll = false }: GalleryGridProps) {
-  const imagesToShow = showAll ? portfolioImages : portfolioImages.slice(0, 6);
+export default function GalleryGrid({ showAll = false, category = "all" }: GalleryGridProps) {
+  const filteredImages = category === "all" 
+    ? portfolioImages 
+    : portfolioImages.filter(image => image.category === category);
+    
+  const imagesToShow = showAll ? filteredImages : filteredImages.slice(0, 6);
 
   return (
     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6" data-testid="gallery-grid">
