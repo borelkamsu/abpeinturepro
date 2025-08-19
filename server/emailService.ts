@@ -24,13 +24,12 @@ export class EmailService {
         headers: {
           'Content-Type': 'application/json',
         },
-                            body: JSON.stringify({
-                      subject: `🎨 Nouvelle demande de devis - ${contact.firstName} ${contact.lastName}`,
-                      from: `A&B PEINTURE <${contact.email}>`,
-                      replyTo: contact.email,
-                      message: this.generateContactEmailText(contact),
-                      html: this.generateContactEmailHTML(contact),
-                    }),
+                                                         body: JSON.stringify({
+                       subject: `🎨 Nouvelle demande de devis - ${contact.firstName} ${contact.lastName}`,
+                       from: contact.email,
+                       name: `${contact.firstName} ${contact.lastName}`,
+                       message: this.generateContactEmailText(contact),
+                     }),
       });
 
       if (response.ok) {
@@ -51,21 +50,40 @@ export class EmailService {
 
   private generateContactEmailText(contact: Contact): string {
     return `
-NOUVELLE DEMANDE DE DEVIS - A&B PEINTURE
+🎨 NOUVELLE DEMANDE DE DEVIS - A&B PEINTURE 🎨
 
-Nom complet: ${contact.firstName} ${contact.lastName}
-Email: ${contact.email}
-Téléphone: ${contact.phone || 'Non fourni'}
-Service demandé: ${contact.serviceType}
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Description du projet:
+📋 INFORMATIONS CLIENT :
+• Nom complet : ${contact.firstName} ${contact.lastName}
+• Email : ${contact.email}
+• Téléphone : ${contact.phone || 'Non fourni'}
+• Service demandé : ${contact.serviceType}
+
+📝 DESCRIPTION DU PROJET :
 ${contact.message}
 
-Date de soumission: ${new Date(contact.createdAt).toLocaleString('fr-CA')}
+⏰ Date de soumission : ${new Date(contact.createdAt).toLocaleString('fr-CA', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
+    })}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+💡 ACTION REQUISE :
+Contactez le client dans les 24h pour un devis personnalisé.
+
+📞 VOS COORDONNÉES :
+• Téléphone : (418) 473-6433
+• Email : augustinmbende82@yahoo.com
+• Localisation : Charlesbourg, Québec
 
 ---
 Ce message a été envoyé automatiquement depuis le formulaire de contact d'A&B PEINTURE
-Contactez le client dans les 24h pour un devis personnalisé
+"PASSION & ESPACE DE VIE"
     `.trim();
   }
 
