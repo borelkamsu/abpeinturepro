@@ -2,6 +2,7 @@ import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 import dotenv from "dotenv";
+import path from "path";
 
 // Load environment variables
 dotenv.config();
@@ -59,6 +60,14 @@ app.use((req, res, next) => {
     await setupVite(app, server);
   } else {
     serveStatic(app);
+  }
+
+  // Add SPA fallback for all routes in production
+  if (!isDevelopment) {
+    app.get('*', (req, res) => {
+      const distPath = path.resolve(import.meta.dirname, "..", "dist", "public");
+      res.sendFile(path.resolve(distPath, "index.html"));
+    });
   }
 
   // ALWAYS serve the app on the port specified in the environment variable PORT
