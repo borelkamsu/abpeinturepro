@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Facebook } from "lucide-react";
@@ -7,6 +7,8 @@ import Logo from "@/components/ui/logo";
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [location] = useLocation();
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
 
   const navigation = [
     { name: "Accueil", href: "/" },
@@ -21,6 +23,26 @@ export default function Header() {
     if (href !== "/" && location.startsWith(href)) return true;
     return false;
   };
+
+  // Fermer le menu mobile quand on clique en dehors
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        isMobileMenuOpen &&
+        mobileMenuRef.current &&
+        !mobileMenuRef.current.contains(event.target as Node) &&
+        menuButtonRef.current &&
+        !menuButtonRef.current.contains(event.target as Node)
+      ) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isMobileMenuOpen]);
 
   return (
     <header className="bg-white shadow-lg fixed w-full top-0 z-50" data-testid="header">
@@ -62,6 +84,7 @@ export default function Header() {
 
           {/* Mobile Menu Button */}
           <Button
+            ref={menuButtonRef}
             variant="ghost"
             size="icon"
             className="md:hidden"
@@ -78,7 +101,11 @@ export default function Header() {
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <div className="md:hidden mt-4 pb-4 border-t border-gray-200" data-testid="mobile-menu">
+          <div 
+            ref={mobileMenuRef}
+            className="md:hidden mt-4 pb-4 border-t border-gray-200" 
+            data-testid="mobile-menu"
+          >
             <div className="flex flex-col space-y-4 mt-4">
               {navigation.map((item) => (
                 <Link 
