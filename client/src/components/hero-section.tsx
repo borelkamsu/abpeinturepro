@@ -42,9 +42,8 @@ export default function HeroSection() {
               Obtenir un Devis Gratuit
             </Button>
             <Button 
-              variant="outline"
               size="lg"
-              className="border-2 border-white text-white hover:bg-white hover:text-secondary-blue px-8 py-4 text-lg font-semibold transition-all"
+              className="border-2 border-white bg-transparent text-white hover:bg-white hover:text-secondary-blue px-8 py-4 text-lg font-semibold transition-all"
               onClick={handleDiscoverServices}
               data-testid="button-discover-services"
             >

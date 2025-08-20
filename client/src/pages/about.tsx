@@ -90,8 +90,7 @@ export default function About() {
                   Contacter Augustin
                 </Button>
                 <Button 
-                  variant="outline"
-                  className="border-primary-green text-primary-green hover:bg-primary-green hover:text-white"
+                  className="border-primary-green bg-transparent text-primary-green hover:bg-primary-green hover:text-white"
                   onClick={() => setLocation("/services")}
                   data-testid="button-view-services"
                 >

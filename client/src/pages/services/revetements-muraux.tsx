@@ -206,9 +206,8 @@ export default function RevetementsMuraux() {
               Obtenir un Devis Gratuit
             </Button>
             <Button 
-              variant="outline"
               size="lg"
-              className="border-white text-white hover:bg-white hover:text-primary-green px-8 py-4 text-lg"
+              className="border-white bg-transparent text-white hover:bg-white hover:text-primary-green px-8 py-4 text-lg"
               onClick={() => setLocation("/services")}
               data-testid="button-all-services"
             >
