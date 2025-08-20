@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -10,14 +9,13 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
-import { apiRequest } from "@/lib/queryClient";
 import { insertContactSchema } from "@shared/schema";
 
 const formSchema = insertContactSchema;
 
 export default function ContactForm() {
   const { toast } = useToast();
-  const queryClient = useQueryClient();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -31,31 +29,78 @@ export default function ContactForm() {
     },
   });
 
-  const contactMutation = useMutation({
-    mutationFn: async (data: z.infer<typeof formSchema>) => {
-      const response = await apiRequest("POST", "/api/contacts", data);
-      return response.json();
-    },
-    onSuccess: () => {
-      toast({
-        title: "Message envoyé!",
-        description: "Merci pour votre demande! Nous vous contacterons sous 24h.",
+  const onSubmit = async (data: z.infer<typeof formSchema>) => {
+    setIsSubmitting(true);
+    
+    try {
+      // Envoyer directement à Formspree
+      const response = await fetch("https://formspree.io/f/xgvzjozy", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          subject: `🎨 Nouvelle demande de devis - ${data.firstName} ${data.lastName}`,
+          from: data.email,
+          name: `${data.firstName} ${data.lastName}`,
+          message: `
+🎨 NOUVELLE DEMANDE DE DEVIS - A&B PEINTURE 🎨
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📋 INFORMATIONS CLIENT :
+• Nom complet : ${data.firstName} ${data.lastName}
+• Email : ${data.email}
+• Téléphone : ${data.phone || 'Non fourni'}
+• Service demandé : ${data.serviceType}
+
+📝 DESCRIPTION DU PROJET :
+${data.message}
+
+⏰ Date de soumission : ${new Date().toLocaleString('fr-CA', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+          })}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+💡 ACTION REQUISE :
+Contactez le client dans les 24h pour un devis personnalisé.
+
+📞 VOS COORDONNÉES :
+• Téléphone : (418) 473-6433
+• Email : augustinmbende82@yahoo.com
+• Localisation : Charlesbourg, Québec
+
+---
+Ce message a été envoyé automatiquement depuis le formulaire de contact d'A&B PEINTURE
+"PASSION & ESPACE DE VIE"
+          `,
+        }),
       });
-      form.reset();
-      queryClient.invalidateQueries({ queryKey: ["/api/contacts"] });
-    },
-    onError: (error) => {
+
+      if (response.ok) {
+        toast({
+          title: "Message envoyé!",
+          description: "Merci pour votre demande! Nous vous contacterons sous 24h.",
+        });
+        form.reset();
+      } else {
+        throw new Error("Erreur lors de l'envoi");
+      }
+    } catch (error) {
       toast({
         title: "Erreur",
         description: "Une erreur est survenue. Veuillez réessayer.",
         variant: "destructive",
       });
       console.error("Contact form error:", error);
-    },
-  });
-
-  const onSubmit = (data: z.infer<typeof formSchema>) => {
-    contactMutation.mutate(data);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const serviceOptions = [
@@ -181,10 +226,10 @@ export default function ContactForm() {
             <Button 
               type="submit" 
               className="w-full bg-primary-green hover:bg-primary-green/90 text-white py-4 text-lg font-semibold transition-all transform hover:scale-105"
-              disabled={contactMutation.isPending}
+              disabled={isSubmitting}
               data-testid="button-submit-contact"
             >
-              {contactMutation.isPending ? "Envoi en cours..." : "Envoyer ma Demande"}
+              {isSubmitting ? "Envoi en cours..." : "Envoyer ma Demande"}
             </Button>
           </form>
         </Form>
