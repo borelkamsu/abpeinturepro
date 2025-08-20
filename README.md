@@ -18,6 +18,17 @@ Les variables d'environnement suivantes sont configurées automatiquement :
 - `NODE_ENV=production` (défini dans render.yaml)
 - `PORT` (assigné automatiquement par Render)
 
+### Configuration des routes (SPA)
+
+Le projet inclut plusieurs fichiers de configuration pour gérer les routes côté client :
+
+- `client/public/_redirects` - Configuration pour Render
+- `vercel.json` - Configuration pour Vercel
+- `netlify.toml` - Configuration pour Netlify
+- `render.yaml` - Configuration des routes dans Render
+
+Ces fichiers permettent de rediriger toutes les routes vers `index.html` pour éviter les erreurs 404 lors de l'actualisation des pages.
+
 ## 🛠️ Développement local
 
 ### Prérequis
