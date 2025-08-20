@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { useLocation } from "wouter";
 import { CheckCircle, Home, Palette, Shield, Clock, Star } from "lucide-react";
+import profileImage from "../../assets/images/profil.png";
 
 export default function PeintureInterieure() {
   const [, setLocation] = useLocation();
@@ -63,7 +64,7 @@ export default function PeintureInterieure() {
             </div>
             <div>
               <img 
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600"
+                src={profileImage}
                 alt="Peintre professionnel au travail"
                 className="rounded-xl shadow-2xl w-full"
               />
