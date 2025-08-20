@@ -1,4 +1,5 @@
 import { Phone, Mail, MapPin, Facebook, Instagram, Linkedin } from "lucide-react";
+import { Link } from "wouter";
 import Logo from "@/components/ui/logo";
 
 export default function Footer() {
@@ -23,29 +24,29 @@ export default function Footer() {
             <h4 className="text-lg font-semibold text-white mb-4">Services Rapides</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <a href="/services" className="hover:text-primary-green transition-colors" data-testid="footer-link-interior">
+                <Link href="/services/peinture-interieure" className="hover:text-primary-green transition-colors" data-testid="footer-link-interior">
                   Peinture Intérieure
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/services" className="hover:text-primary-green transition-colors" data-testid="footer-link-exterior">
+                <Link href="/services" className="hover:text-primary-green transition-colors" data-testid="footer-link-exterior">
                   Peinture Extérieure
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/services" className="hover:text-primary-green transition-colors" data-testid="footer-link-renovation">
+                <Link href="/services" className="hover:text-primary-green transition-colors" data-testid="footer-link-renovation">
                   Rénovation
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/contact" className="hover:text-primary-green transition-colors" data-testid="footer-link-estimate">
+                <Link href="/services/estimation-gratuite" className="hover:text-primary-green transition-colors" data-testid="footer-link-estimate">
                   Estimation Gratuite
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/contact" className="hover:text-primary-green transition-colors" data-testid="footer-link-consultation">
+                <Link href="/services/conseil-expert" className="hover:text-primary-green transition-colors" data-testid="footer-link-consultation">
                   Conseil Expert
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
